@@ -1,0 +1,11 @@
+# Render blueprint — deploy with "New +" → Blueprint → point at this repo/folder.
+services:
+  - type: web
+    name: mediaflow-proxy
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter          # free tier sleeps after 15 min idle (first stream slow) — starter is always-on
+    healthCheckPath: /
+    envVars:
+      - key: API_PASSWORD
+        sync: false        # set in dashboard — this is the proxy password clients must send
